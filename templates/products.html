@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Товары{% endblock %}
+
+{% block nav %}
+{% include 'nav.html' with list_types=list_types%}
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+
+  <div class="container">
+    <!-- Example row of columns -->
+
+    <h1>{{ title }}</h1>
+    {% if  products %}
+    <div class="row">
+    {% for product in products %}
+      <div class="col-md-4">
+        {% include 'product.html' with product=product%}
+      </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+      Тут пока ничего нет!
+    </div>
+    {% endif %}
+
+
+  </div>
+</main>
+
+
+{% endblock %}

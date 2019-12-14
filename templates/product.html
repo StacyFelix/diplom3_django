@@ -1,0 +1,16 @@
+{% load static %}
+
+<h2>{{ product.title_pr }}</h2>
+<p>{{ product.description_pr }}</p>
+
+<a href="{% url 'product' product.id %}">
+
+  <img src="/{{ product.image }}" width="180">
+
+</a>
+{% if request.user.is_authenticated %}
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-secondary" name="product" value="{{ product.id }}">Добавить в корзину »</button>
+</form>
+{% endif %}

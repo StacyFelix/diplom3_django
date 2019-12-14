@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block nav %}
+{% include 'nav.html' with list_types=list_types%}
+{% endblock %}
+
+
+
+{% block content %}
+<main role="main">
+  {% for article in list_articles %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">{{ article.title_a }}</h1>
+      <p>{{ article.description_a }}</p>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <!-- Example row of columns -->
+    <div class="row">
+    {% for product in article.products %}
+      <div class="col-md-4">
+        {% include 'product.html' with product=product%}
+      </div>
+    {% endfor %}
+    </div>
+  </div> <!-- /container -->
+  {% endfor %}
+</main>
+
+{% endblock %}
